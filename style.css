@@ -2,12 +2,17 @@
     padding: 0px;
 }
 body {
+    background-image: url(images/lines.png);
     background-color: bisque;
+}
+h1 {
+    font-family:'Courier New', Courier, monospace;
+    font-weight:900;
+
 }
 input {
     border: 1px solid black;
-    border-radius: 10%;
-    height: 30px;
+    height: 40px;
 }
 .addBtn {
     border: 1px solid black;
@@ -16,13 +21,21 @@ input {
     vertical-align: middle;
     line-height: 15px;
 }
-.list-container {
+.formCon {
     background-color: white;
     border: 1px solid black;
     font-size: 30px;
+    max-width: 600px;
+    box-shadow: 5px 10px 8px grey;
 }
+
 .rmvBtn {
-    margin: auto;
+    border: 1px solid black;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 15px;
+    
 }
 .checkBox {
     border: 50%;
@@ -37,4 +50,7 @@ input[type="checkbox"] {
 }
 #completed {
     text-decoration: line-through;
+}
+hr {
+    background-color: black;
 }

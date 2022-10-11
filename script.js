@@ -6,7 +6,7 @@ var getAndDisplayAllTasks = function() {
         success: function (response, textStatus) {
             $('.list-container').empty()
           response.tasks.forEach(function(task) {
-            $('.list-container').append('<div class="row"><input type="checkbox" class="mark-complete m-3 rounded-circle" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p class="col-xs-8">' + task.content + '</p><button class=" btn btn-danger rmvBtn" data-id="' + task.id + '">-</button>');
+            $('.list-container').append('<div class="row"><input type="checkbox" class="mark-complete m-3 py-3" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p class="col-xs-8 py-2">' + task.content + '</p><button class=" btn btn-danger rmvBtn ml-5 mt-3" data-id="' + task.id + '">-</button></div><hr>');
             });
             
             },

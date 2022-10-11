@@ -11,17 +11,17 @@
 </head>
 <body>
    <div class="container-fluid d-flex flex-column align-items-center">
-    <h1 class="my-4">To Do List</h1>
-    <div class="container-fluid mt-5 p-4 d-flex flex-column align-items-center">
+    <div class="row container-fluid formCon d-flex align-items-center justify-content-center mt-5">
+        <h1 class="my-4">To Do List</h1>
+    </div>
+    <div class="container-fluid my-5 p-4 d-flex flex-column align-items-center formCon">
         <form class="align-items-center" id="create-task">
             <input id="new-task-content" type="text" placeholder="  new task" required/>
           <button class="btn btn-success ml-4 addBtn">+</button>          
         </form>
     </div>
-    <div class="row">
-        <h3><span id="count"></span> Tasks Left</h3>
-    </div>
-    <div class="list-container container-fluid"></div>
+ 
+    <div class="list-container formCon container-fluid py-4 mb-4"></div>
    </div>
 <script src="script.js">
 </script>
