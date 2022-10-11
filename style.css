@@ -1,5 +1,6 @@
 * {
     padding: 0px;
+    margin: 0px;
 }
 body {
     background-image: url(images/lines.png);
@@ -14,13 +15,6 @@ input {
     border: 1px solid black;
     height: 40px;
 }
-.addBtn {
-    border: 1px solid black;
-    height: 30px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 15px;
-}
 .formCon {
     background-color: white;
     border: 1px solid black;
@@ -28,8 +22,7 @@ input {
     max-width: 600px;
     box-shadow: 5px 10px 8px grey;
 }
-
-.rmvBtn {
+.Btn {
     border: 1px solid black;
     height: 30px;
     text-align: center;
@@ -37,19 +30,9 @@ input {
     line-height: 15px;
     
 }
-.checkBox {
-    border: 50%;
-}
 input[type="checkbox"] {
     width: 30px;
     height: 30px;
-}
-.row {
-    vertical-align: middle;
-    text-align: center;
-}
-#completed {
-    text-decoration: line-through;
 }
 hr {
     background-color: black;
