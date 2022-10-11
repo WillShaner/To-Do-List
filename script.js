@@ -6,9 +6,14 @@ var getAndDisplayAllTasks = function() {
         success: function (response, textStatus) {
             $('.list-container').empty()
           response.tasks.forEach(function(task) {
-            $('.list-container').append('<div class="row"><input type="checkbox" class="mark-complete m-3 py-3" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p class="col-xs-8 py-2">' + task.content + '</p><button class=" btn btn-danger rmvBtn ml-5 mt-3" data-id="' + task.id + '">-</button></div><hr>');
-            });
-            
+            if(task.completed == true) {
+                $('.list-container').append('<div class="row completed display=true"><input type="checkbox" class="mark-complete m-3 py-3" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p class="col-xs-8 py-2">' + task.content + '</p><button class=" btn btn-danger rmvBtn ml-5 mt-3" data-id="' + task.id + '">-</button></div><hr class="completed">');
+            }
+            else {
+                $('.list-container').append('<div class="row active display=true"><input type="checkbox" class="mark-complete m-3 py-3" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p class="col-xs-8 py-2">' + task.content + '</p><button class=" btn btn-danger rmvBtn ml-5 mt-3" data-id="' + task.id + '">-</button></div><hr class="active">');
+
+            }
+            }); 
             },
         error: function (request, textStatus, errorMessage) {
           console.log(errorMessage);
@@ -81,27 +86,35 @@ var markTaskActive = function (id) {
   }
 $(document).ready(function() {
 
-      getAndDisplayAllTasks()
+    getAndDisplayAllTasks()
+    $('.activeBtn').on("click", function() {
+        $('.completed').siblings().removeAttr("id", "hidden")
+        $('.completed').attr("id", "hidden")
+    })
+    $('.completeBtn').on("click", function() {
+        $('.active').siblings().removeAttr("id", "hidden")
+        $('.active').attr("id", "hidden")    
+    })
+    $('.allBtn').on("click", function() {
+        $('.row').removeAttr("id", "hidden")
 
+    })
 
-      $(document).on('click', '.rmvBtn', function () {
-        rmvTask($(this).data('id'))
-      }); 
+    
+    $(document).on('click', '.rmvBtn', function () {
+    rmvTask($(this).data('id'))
+    }); 
 
-      $('#create-task').on('submit', function (e) {
-        e.preventDefault();
-        createTask();
-      });
+    $('#create-task').on('submit', function (e) {
+    e.preventDefault();
+    createTask();
+    });
 
-      $(document).on('change', '.mark-complete', function () {
-        var count = 0;
-        if (this.checked) {
-            markTaskComplete($(this).data('id'));
-            count --
-          } else {
-            markTaskActive($(this).data('id'));
-            count ++
-        }     
-        });
-        $('#count').html(count)
+    $(document).on('change', '.mark-complete', function () {
+    if (this.checked) {
+        markTaskComplete($(this).data('id'));
+        } else {
+        markTaskActive($(this).data('id'));
+    }     
+    });
 })

@@ -54,3 +54,6 @@ input[type="checkbox"] {
 hr {
     background-color: black;
 }
+#hidden {
+    display: none;
+}
