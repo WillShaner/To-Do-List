@@ -7,34 +7,23 @@
     <title>To Do List</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
    <div class="container-fluid d-flex flex-column align-items-center">
     <h1 class="my-4">To Do List</h1>
-    <div class="row align-items-center">
-        <input type="text"><button class="btn btn-primary ml-4 addBtn">ADD</button>
+    <div class="container-fluid mt-5 p-4 d-flex flex-column align-items-center">
+        <form class="align-items-center" id="create-task">
+            <input id="new-task-content" type="text" placeholder="  new task" required/>
+          <button class="btn btn-success ml-4 addBtn">+</button>          
+        </form>
     </div>
-    <div class="list-container">
-
+    <div class="row">
+        <h3><span id="count"></span> Tasks Left</h3>
     </div>
+    <div class="list-container container-fluid"></div>
    </div>
-<script>
-    var httpRequest = new XMLHttpRequest();
-    httpRequest.onload = function() {
-    if (httpRequest.readyState === XMLHttpRequest.DONE) {
-        if (httpRequest.status === 200) {
-        var response = JSON.parse(httpRequest.responseText);
-        console.log(response)
-        } else {
-        console.log(httpRequest.statusText);
-        }
-    }
-    }
-    httpRequest.onerror = function() {
-    console.log(httpRequest.statusText);
-    }
-    httpRequest.open('GET', 'https://fewd-todolist-api.onrender.com/tasks?api_key=1');
-    httpRequest.send();    
+<script src="script.js">
 </script>
 </body>
 </html>

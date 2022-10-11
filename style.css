@@ -16,3 +16,25 @@ input {
     vertical-align: middle;
     line-height: 15px;
 }
+.list-container {
+    background-color: white;
+    border: 1px solid black;
+    font-size: 30px;
+}
+.rmvBtn {
+    margin: auto;
+}
+.checkBox {
+    border: 50%;
+}
+input[type="checkbox"] {
+    width: 30px;
+    height: 30px;
+}
+.row {
+    vertical-align: middle;
+    text-align: center;
+}
+#completed {
+    text-decoration: line-through;
+}
