@@ -30,6 +30,7 @@ input {
     line-height: 15px;
     
 }
+
 input[type="checkbox"] {
     width: 30px;
     height: 30px;

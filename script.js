@@ -5,12 +5,12 @@ var getAndDisplayAllTasks = function() {
         dataType: 'json',
         success: function (response, textStatus) {
             $('.list-container').empty()
-          response.tasks.forEach(function(task) {
+          response.tasks.sort().forEach(function(task) {
             if(task.completed == true) {
-                $('.list-container').append('<div class="row completed display=true"><input type="checkbox" class="mark-complete m-3 py-3" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p class="col-xs-8 py-2">' + task.content + '</p><button class=" btn btn-danger Btn ml-5 mt-3" data-id="' + task.id + '">-</button></div><hr class="completed">');
+                $('.list-container').append('<div class="row completed display=true"><input type="checkbox" class="mark-complete m-3 py-3" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p class="col-xs-8 py-2">' + task.content + '</p><button class=" btn btn-danger rmvBtn Btn ml-5 mt-3" data-id="' + task.id + '">-</button></div');
             }
             else {
-                $('.list-container').append('<div class="row active display=true"><input type="checkbox" class="mark-complete m-3 py-3" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p class="col-xs-8 py-2">' + task.content + '</p><button class=" btn btn-danger Btn ml-5 mt-3" data-id="' + task.id + '">-</button></div><hr class="active">');
+                $('.list-container').append('<div class="row active display=true"><input type="checkbox" class="mark-complete m-3 py-3" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p class="col-xs-8 py-2">' + task.content + '</p><button class=" btn btn-danger rmvBtn Btn ml-5 mt-3" data-id="' + task.id + '">-</button></div>');
             }
             }); 
             },
