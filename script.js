@@ -1,3 +1,4 @@
+
 var getAndDisplayAllTasks = function() {
     $.ajax({
         type: 'GET',
@@ -5,14 +6,16 @@ var getAndDisplayAllTasks = function() {
         dataType: 'json',
         success: function (response, textStatus) {
             $('.list-container').empty()
-          response.tasks.sort().forEach(function(task) {
+            var tasks = response.tasks
+            tasks = tasks.sort((a,b) => b.id - a.id);
+            tasks.forEach(function(task) {
             if(task.completed == true) {
                 $('.list-container').append('<div class="row completed display=true"><input type="checkbox" class="mark-complete m-3 py-3" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p class="col-xs-8 py-2">' + task.content + '</p><button class=" btn btn-danger rmvBtn Btn ml-5 mt-3" data-id="' + task.id + '">-</button></div');
             }
             else {
                 $('.list-container').append('<div class="row active display=true"><input type="checkbox" class="mark-complete m-3 py-3" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p class="col-xs-8 py-2">' + task.content + '</p><button class=" btn btn-danger rmvBtn Btn ml-5 mt-3" data-id="' + task.id + '">-</button></div>');
             }
-            }); 
+           });
             },
         error: function (request, textStatus, errorMessage) {
           console.log(errorMessage);
@@ -87,11 +90,11 @@ $(document).ready(function() {
 
     getAndDisplayAllTasks()
     $('.activeBtn').on("click", function() {
-        $('.completed').siblings().removeAttr("id", "hidden")
+        $('.row').removeAttr("id", "hidden")
         $('.completed').attr("id", "hidden")
     })
     $('.completeBtn').on("click", function() {
-        $('.active').siblings().removeAttr("id", "hidden")
+        $('.row').removeAttr("id", "hidden")
         $('.active').attr("id", "hidden")    
     })
     $('.allBtn').on("click", function() {
