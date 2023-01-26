@@ -6,40 +6,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
-    <div class="container-fluid d-flex flex-column align-items-center">
-        <div class="row container-fluid formCon d-flex align-items-center justify-content-center mt-5">
-            <h1 class="my-4">To Do List</h1>
-            <div class="d-flex flex-column align-items-center switch">
-                <label class="theme-switch" for="checkbox">
-                    <input onchange="darkMode()"
-                    type="checkbox" id="checkbox" />
-                    <div class="slider round"></div>
-                    <p>dark mode</p>
-                </label>
+    <header>
+        <nav><h1 class="my-4">To Do List</h1><img src='/assets/logo.svg' /> <div class="switch">
+            <label class="theme-switch" for="checkbox">
+                <input onchange="darkMode()"
+                type="checkbox" id="checkbox" />
+                <div class="slider round"></div>
+            </label>
+            <p class="switch-text">dark mode</p>
+
+        </div></nav>
+    </header>
+    <main class="main-container">
+        
+        <div class="user-container container">
+            <div class="user-container-content container-content">
+                <img class="user-container-content-img" src="/assets/headshot copy.png" alt="user" />
+                <div>
+                    <p>created by</p>
+                    <p>William<br/>Shaner</p>
+                    <div class="user-container-content-row">
+                        <a href="https://www.linkedin.com/in/will-shaner-315500245/" rel="noreferrer" target="_blank"><img src="/assets/linkedin.svg"/></a>
+                        <a href="https://genuine-sunflower-520c38.netlify.app/" rel="noreferrer" target="_blank"><img src="/assets/user.svg"/></a>
+                        <a href="https://github.com/WillShaner?tab=repositories" rel="noreferrer" target="_blank"><img src="/assets/github.svg"/></a>
+                    </div>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="container-fluid my-5 p-4 d-flex flex-column align-items-center formCon">
-            <form class="p-4" id="create-task">
-                <input id="new-task-content" type="text" placeholder="  new task" required />
-                <button type="submit" class="btn btn-success ml-4 Btn">+</button>
-            </form>
-        </div>
-        <div class="formCon container-fluid py-4 mb-4">
-            <div class="row py-4">
-                <button class="btn btn-secondary mx-3 allBtn" type="button">ALL</button>
-                <button class="btn btn-secondary mx-3 activeBtn" type="button">ACTIVE</button>
-                <button class="btn btn-secondary mx-3 completeBtn" type="button">COMPLETE</button>
+        <div class="stacked-containers">
+            <div class="quote-container container">
+                <div class="quote-container-content container-content">
+                    <p class="quote-container-content-text"></p>
+                </div>
+            
             </div>
-            <div class="list-container"></div>
+            <div class="weather-container container">
+                <div class="weather-container-content container-content"></div>
+            </div>
         </div>
-    </div>
+        <div class="todo-container container">
+            <div class="todo-container-content container-content">
+                <form class="new-task" id="create-task">
+                    <input id="new-task-content" type="text" placeholder="new task" required />
+                    <button type="submit" class="btn btn-success">+</button>
+                </form>
+                <div class="row">
+                    <button class="btn allBtn" type="button">ALL</button>
+                    <button class="btn activeBtn" type="button">ACTIVE</button>
+                    <button class="btn completeBtn" type="button">COMPLETE</button>
+                </div>
+                <div class="list-container"></div>
+            </div>
+        </div>
+    </main>
     <script src="script.js">
     </script>
 </body>

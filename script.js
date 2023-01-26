@@ -2,30 +2,26 @@
 function darkMode() {
   document.body.classList.toggle('dark-mode-main')
   $('.formCon').toggleClass('dark-mode')
-
+  $('.switch-text').toggleClass('dark-text')
 }
-var getAndDisplayAllTasks = function () {
-  $.ajax({
-    type: 'GET',
-    url: 'https://fewd-todolist-api.onrender.com/tasks?api_key=16',
-    dataType: 'json',
-    success: function (response, textStatus) {
-      $('.list-container').empty()
-      var tasks = response.tasks
+var getAndDisplayAllTasks = async ()  => {
+  await fetch('https://fewd-todolist-api.onrender.com/tasks?api_key=16')
+  .then((res) => res.json())
+  .then((result) => {
+     $('.list-container').empty()    
+      var tasks = result.tasks
       tasks = tasks.sort((a, b) => b.id - a.id);
-      tasks.forEach(function (task) {
+      tasks.forEach((task) => {
         if (task.completed == true) {
-          $('.list-container').append('<div class="row completed display=true"><input type="checkbox" class="mark-complete m-3 py-3" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p class="col-xs-8 py-2">' + task.content + '</p><button class=" btn btn-danger rmvBtn Btn ml-5 mt-3" data-id="' + task.id + '">-</button></div');
+          $('.list-container').append('<div class="list-container-item completed" display=true"><input type="checkbox" class="mark-complete m-3 py-3" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p class="col-xs-8 py-2">' + task.content + '</p><button class="remove-btn" data-id="' + task.id + '">-</button></div');
         }
         else {
-          $('.list-container').append('<div class="row active display=true"><input type="checkbox" class="mark-complete m-3 py-3" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p class="col-xs-8 py-2">' + task.content + '</p><button class=" btn btn-danger rmvBtn Btn ml-5 mt-3" data-id="' + task.id + '">-</button></div>');
+          $('.list-container').append('<div class="list-container-item active" display=true"><input type="checkbox" class="mark-complete m-3 py-3" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p class="col-xs-8 py-2">' + task.content + '</p><button class="remove-btn" data-id="' + task.id + '">-</button></div>');
         }
       });
-    },
-    error: function (request, textStatus, errorMessage) {
-      console.log(errorMessage);
-    }
-  });
+}).catch(error => 
+      console.log(error)
+      );
 }
 
 var createTask = function () {
@@ -50,12 +46,10 @@ var createTask = function () {
 }
 
 var rmvTask = function (id) {
-  console.log(id)
   $.ajax({
     type: 'DELETE',
     url: 'https://fewd-todolist-api.onrender.com/tasks/' + id + '?api_key=16',
     success: function (response, textStatus) {
-      console.log(response);
       getAndDisplayAllTasks()
     },
     error: function (request, textStatus, errorMessage) {
@@ -95,19 +89,19 @@ $(document).ready(function () {
 
   getAndDisplayAllTasks()
   $('.activeBtn').on("click", function () {
-    $('.row').removeAttr("id", "hidden")
+    $('.list-container-item').removeAttr("id", "hidden")
     $('.completed').attr("id", "hidden")
   })
   $('.completeBtn').on("click", function () {
-    $('.row').removeAttr("id", "hidden")
+    $('.list-container-item').removeAttr("id", "hidden")
     $('.active').attr("id", "hidden")
   })
   $('.allBtn').on("click", function () {
-    $('.row').removeAttr("id", "hidden")
+    $('.list-container-item').removeAttr("id", "hidden")
   })
 
 
-  $(document).on('click', '.rmvBtn', function () {
+  $(document).on('click', '.remove-btn', function () {
     rmvTask($(this).data('id'))
   });
 
@@ -125,3 +119,40 @@ $(document).ready(function () {
   });
 
 })
+
+let lat;
+let long;
+navigator.geolocation.getCurrentPosition(function (position) {
+  lat = position.coords.latitude;
+  long = position.coords.longitude;
+  fetchData(lat, long)
+});
+
+const fetchData = async (lat, long) => {
+  await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&APPID=7abcb94924cccac024edc3185f2247cf`
+  )
+  .then((res) => res.json())
+  .then((result) =>  $('.weather-container-content').html(`<h3>Weather Today</h3><img
+  src='http://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png'
+  alt="weather icon"
+/><p>${result.main.temp}&#176;F<br/>${result.name}</p>`)).catch(error => 
+    console.log(error)
+    );
+    
+};
+
+const getQuote = async () => {
+  const randomNumber = Math.floor(Math.random() * 1600)
+
+  await fetch(
+    `https://type.fit/api/quotes`
+  )
+    .then((res) => res.json())
+    .then((result) => $('.quote-container-content').html(`<h3>Quote of the Day</h3><p>${result[randomNumber].text}</p> <p>-${result[randomNumber]?.author}</p>`)).catch(error => 
+      console.log(error)
+      );
+
+    
+};
+getQuote()
