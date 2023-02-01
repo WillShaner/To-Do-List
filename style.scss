@@ -111,17 +111,7 @@ nav {
 
 /* todo container */
 
-.remove-btn {
-  @extend .btn;
-  background-color: red;
-  padding: 5px 10px;
-  font-size: 1.25rem;
 
-  &:hover {
-    background-color: darkred;
-  }
-
-}
 
 .btn {
   background-color: $midnight-green-eagle-green;
@@ -141,6 +131,18 @@ nav {
       background-color: darkgreen;
     }
   }
+}
+
+.remove-btn {
+  @extend .btn;
+  background-color: red;
+  padding: 5px 10px;
+  font-size: 1.25rem;
+
+  &:hover {
+    background-color: darkred;
+  }
+
 }
 
 input[type="checkbox"] {

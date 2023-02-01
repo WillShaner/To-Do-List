@@ -13,10 +13,10 @@ var getAndDisplayAllTasks = async ()  => {
       tasks = tasks.sort((a, b) => b.id - a.id);
       tasks.forEach((task) => {
         if (task.completed == true) {
-          $('.list-container').append('<div class="list-container-item completed" display=true"><input type="checkbox" class="mark-complete m-3 py-3" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p class="col-xs-8 py-2">' + task.content + '</p><button class="remove-btn" data-id="' + task.id + '">-</button></div');
+          $('.list-container').append('<div class="list-container-item completed" display=true"><input type="checkbox" class="mark-complete" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p>' + task.content + '</p><button class="remove-btn" data-id="' + task.id + '">-</button></div');
         }
         else {
-          $('.list-container').append('<div class="list-container-item active" display=true"><input type="checkbox" class="mark-complete m-3 py-3" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p class="col-xs-8 py-2">' + task.content + '</p><button class="remove-btn" data-id="' + task.id + '">-</button></div>');
+          $('.list-container').append('<div class="list-container-item active" display=true"><input type="checkbox" class="mark-complete" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '><p>' + task.content + '</p><button class="remove-btn" data-id="' + task.id + '">-</button></div>');
         }
       });
 }).catch(error => 
