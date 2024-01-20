@@ -134,7 +134,7 @@ const fetchData = async (lat, long) => {
   )
   .then((res) => res.json())
   .then((result) =>  $('.weather-container-content').html(`<h3>Weather Today</h3><img
-  src='http://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png'
+  src='https://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png'
   alt="weather icon"
 /><p>${result.main.temp}&#176;F<br/>${result.name}</p>`)).catch(error => 
     console.log(error)
