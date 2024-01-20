@@ -287,15 +287,22 @@ input:checked+.slider {
   &-content {
     min-height: 20em;
 
-    &-img {
-      width: 50%;
-      max-width: 150px;
-      outline: 2px solid $blue-ncs;
-      object-fit: cover;
-      height: auto;
-      border-radius: 50%;
-      margin-bottom: 0.75rem;
+  &-img {
+    width: 50%;
+    max-width: 150px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 0.75rem;
+    outline: 2px solid $blue-ncs;
+    transition: transform 0.3s ease-in-out; /* Add a smooth transition effect on hover */
+    filter: brightness(1); /* Initial brightness */
+
+    &:hover {
+        transform: scale(1.1); /* Scale the image slightly on hover for a dynamic effect */
+        filter: brightness(0.8); /* Decrease brightness on hover for emphasis */
     }
+  }
+
 
     p:first-of-type {
       margin: 0;
