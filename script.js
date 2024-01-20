@@ -143,16 +143,29 @@ const fetchData = async (lat, long) => {
 };
 
 const getQuote = async () => {
-  const randomNumber = Math.floor(Math.random() * 1600)
+  const randomNumber = Math.floor(Math.random() * 1600);
 
-  await fetch(
-    `https://type.fit/api/quotes`
-  )
-    .then((res) => res.json())
-    .then((result) => $('.quote-container-content').html(`<h3>Quote of the Day</h3><p>${result[randomNumber].text}</p> <p>-${result[randomNumber]?.author}</p>`)).catch(error => 
-      console.log(error)
-      );
+  try {
+    const response = await fetch(`https://type.fit/api/quotes`);
+    const result = await response.json();
 
-    
+    if (result[randomNumber]) {
+      const quoteContainer = document.createElement('div');
+      quoteContainer.classList.add('quote-container', 'container');
+
+      const quoteContainerContent = document.createElement('div');
+      quoteContainerContent.classList.add('quote-container-content', 'container-content');
+
+      quoteContainerContent.innerHTML = `<h3>Quote of the Day</h3><p>${result[randomNumber].text}</p> <p>-${result[randomNumber]?.author}</p>`;
+
+      quoteContainer.appendChild(quoteContainerContent);
+      document.querySelector('.stacked-containers').insertBefore(quoteContainer, document.querySelector('.weather-container'));
+
+    } else {
+      console.log('Quote not available.');
+    }
+  } catch (error) {
+    console.error('Error fetching quote:', error);
+  }
 };
 getQuote()
